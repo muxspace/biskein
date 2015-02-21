@@ -11,21 +11,24 @@
 
 # Install core languages
 sudo sh -c "echo 'deb http://archives.ubuntu.com/ubuntu $(lsb_release -cs) main' >> /etc/apt/sources.list"
-sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-
-sudo add-apt-repository ppa:webupd8team/java
-echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
 sudo apt-get update
 
-sudo apt-get install oracle-java8-installer
-sudo apt-get install gcc-4.9
-sudo apt-get install gfortran
+sudo apt-get -y install python-software-properties
+
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo add-apt-repository ppa:webupd8team/java
+echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+
+sudo apt-get update
+sudo apt-get -y install oracle-java8-installer
+sudo apt-get -y install gcc-4.9
+sudo apt-get -y install gfortran
 
 
 # Install core applications
-sudo apt-get install curl
-sudo apt-get install wget
-sudo apt-get install git
+sudo apt-get -y install curl
+sudo apt-get -y install wget
+sudo apt-get -y install git
 
-sudo apt-get install supervisor
+sudo apt-get -y install supervisor
 
