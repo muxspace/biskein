@@ -31,7 +31,8 @@ sudo apt-get -y install openjdk-6-jdk
 #sudo apt-get -y install autoconf
 #sudo apt-get -y install automake
 sudo apt-get -y install curl
-sudo apt-get -y install git git-core
+sudo apt-get -y install git 
+sudo apt-get -y install git-core
 
 sudo apt-get -y install supervisor
 #sudo gem install foreman
