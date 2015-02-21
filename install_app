@@ -1,7 +1,8 @@
 #!/bin/bash
 # Install an application and start with foreman
 APP_HOME=/app
-SOURCE_HOME=~/source
+BUILD_HOME=~/build
+SOURCE_HOME=$BUILD_HOME/source
 
 app=$1
 
@@ -12,9 +13,9 @@ do_exit() {
 
 install_buildpack() {
   pack=$1
-  rm -rf ~/buildpack
-  git clone $pack buildpack
-  ~/buildpack/bin/compile $SOURCE_HOME ~/cache
+  rm -rf $BUILD_HOME/buildpack
+  git clone $pack $BUILD_HOME/buildpack
+  $BUILD_HOME/buildpack/bin/compile $SOURCE_HOME $BUILD_HOME/cache
 }
 
 
@@ -22,12 +23,10 @@ install_buildpack() {
 
 git clone $app $SOURCE_HOME
 
-buildpack="$(cat .buildpacks)"
+buildpack="$(cat $SOURCE_HOME/.buildpacks)"
 for bp in $(echo $buildpack)
 do
   install_buildpack $bp
 done
-
-cat $SOURCE_HOME/environment.sh >> /etc/profile
 
 #foreman export

@@ -20,21 +20,25 @@ sudo apt-get update
 
 # Install core libraries
 sudo apt-get -y install libreadline5
+sudo apt-get -y install build-essential
 
 # Install core languages
-sudo apt-get -y install oracle-java8-installer
-sudo apt-get -y install gcc-4.9
 sudo apt-get -y install gfortran
+sudo apt-get -y install oracle-java8-installer
 sudo apt-get -y install ruby-full
 
 
 # Install core applications
+sudo apt-get -y install autoconf
+sudo apt-get -y install automake
 sudo apt-get -y install curl
-sudo apt-get -y install wget
 sudo apt-get -y install git
 
 sudo apt-get -y install supervisor
 sudo gem install foreman
 
 
+sudo sh -c "echo 'set -o vi' >> /etc/profile"
+sudo sh -c "echo 'export GIT_SSL_NO_VERIFY=true' >> /etc/profile"
+sudo sh -c "echo '[ -f \"/app/environment.sh\" ] && source /app/environment.sh' >> /etc/profile"
 git clone https://github.com/zatonovo/biskein.git
