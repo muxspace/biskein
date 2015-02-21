@@ -24,7 +24,7 @@ sudo apt-get -y install libcurl4-openssl-dev libzip-dev libbz2-dev libxml2-dev l
 # Install core languages
 #sudo apt-get -y install oracle-java8-installer
 sudo apt-get -y install openjdk-6-jdk
-sudo apt-get -y install ruby-full rubygems
+#sudo apt-get -y install ruby-full rubygems
 
 
 # Install core applications
@@ -34,7 +34,7 @@ sudo apt-get -y install curl
 sudo apt-get -y install git git-core
 
 sudo apt-get -y install supervisor
-sudo gem install foreman
+#sudo gem install foreman
 
 
 sudo sh -c "echo 'set -o vi' >> /etc/profile"
