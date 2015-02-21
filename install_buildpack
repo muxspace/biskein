@@ -1,4 +1,6 @@
 #!/bin/bash
+# Example
+# install_buildpack https://github.com/zatonovo/heroku-buildpack-r.git
 buildpack=$1
 do_exit() {
   echo $2
