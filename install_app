@@ -1,0 +1,33 @@
+#!/bin/bash
+# Install an application and start with foreman
+APP_HOME=/app
+SOURCE_HOME=~/source
+
+app=$1
+
+do_exit() {
+  echo $2
+  exit $1
+}
+
+install_buildpack() {
+  pack=$1
+  rm -rf ~/buildpack
+  git clone $pack buildpack
+  ~/buildpack/bin/compile $SOURCE_HOME ~/cache
+}
+
+
+[ -z "$app" ] && do_exit 1 "No app url specified"
+
+git clone $app $SOURCE_HOME
+
+buildpack="$(cat .buildpacks)"
+for bp in $(echo $buildpack)
+do
+  install_buildpack $bp
+done
+
+cat $SOURCE_HOME/environment.sh >> /etc/profile
+
+#foreman export
