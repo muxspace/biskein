@@ -21,6 +21,7 @@ install_buildpack() {
 
 [ -z "$app" ] && do_exit 1 "No app url specified"
 
+mkdir -p /app/log
 git clone $app $SOURCE_HOME
 
 buildpack="$(cat $SOURCE_HOME/.buildpacks)"
@@ -29,4 +30,21 @@ do
   install_buildpack $bp
 done
 
-#foreman export
+echo "SOURCE_HOME=$SOURCE_HOME" >> /etc/profile
+cat >> /etc/profile <<'EOT'
+if [ -d "$SOURCE_HOME/.profile.d" ]
+then
+  for f in $(ls $SOURCE_HOME/.profile.d/)
+  do
+    source $SOURCE_HOME/.profile.d/$f
+  done
+fi
+#[ -f "$SOURCE_HOME/environment.sh" ] && source $SOURCE_HOME/environment.sh
+EOT
+
+if [ -d "$SOURCE_HOME/.supervisor.d" ]
+then
+  cp $SOURCE_HOME/.supervisor.d/*.conf /etc/supervisor/conf.d/
+fi
+supervisorctl reread
+
