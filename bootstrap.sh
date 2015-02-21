@@ -19,6 +19,7 @@ sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 sudo apt-get update
 
 # Install core libraries
+sudo apt-get -y install libreadline5-dev
 sudo apt-get -y install libcurl4-openssl-dev libzip-dev libbz2-dev libxml2-dev libpq-dev
 
 # Install core languages
