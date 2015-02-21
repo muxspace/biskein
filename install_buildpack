@@ -1,0 +1,14 @@
+#!/bin/bash
+buildpack=$1
+do_exit() {
+  echo $2
+  exit $1
+}
+
+[ -z "$buildpack" ] && do_exit 1 "No buildpack url specified"
+
+BUILDPACK_HOME=~/.buildpack
+mkdir $BUILDPACK_HOME >> /dev/null
+cd $BUILDPACK_HOME
+git clone $buildpack source
+./source/bin/compile $BUILDPACK_HOME/build $BUILDPACK_HOME/cache
